@@ -6,22 +6,32 @@ sdk: docker
 app_port: 7860
 ---
 
-#  Urban Heat Reduction Environment
+# Urban Heat Reduction Environment
 
-##  Live API
-https://sagar312-urban-heat-env.hf.space/docs
+## Why this matters
+Urban heat islands are a real-world problem caused by dense construction and lack of greenery.  
+This project demonstrates how AI agents can optimize tree placement to reduce city temperatures.
+
+---
+
+## Live Demo
+API Docs:  
+https://sagar312-urban-heat-env.hf.space/docs  
+
+Demo Simulation:  
+https://sagar312-urban-heat-env.hf.space/demo  
 
 ---
 
 ## Overview
-This project simulates an urban heat mitigation system where an AI agent plants trees to reduce temperature in a city grid.
+An AI-compatible environment where an agent plants trees on a grid to minimize temperature.
 
 ---
 
 ## Features
 - 5x5 temperature grid (30–40°C)
 - Building constraints
-- Intelligent tree placement
+- Tree placement strategy
 - Reward-based optimization
 
 ---
@@ -32,17 +42,40 @@ This project simulates an urban heat mitigation system where an AI agent plants 
 - `POST /step` → Take action  
 - `GET /state` → Get current state  
 - `GET /docs` → Interactive API  
+- `GET /demo` → Quick simulation  
 
 ---
 
 ## Example Flow
 
 1. Reset environment  
-2. Place tree using `/step`  
+2. Place trees strategically  
 3. Observe temperature reduction  
+4. Optimize placement  
+
+---
+
+## How it works
+
+1. Environment initializes temperature grid  
+2. Agent selects position  
+3. Tree reduces nearby temperature  
+4. Reward is calculated  
+5. Process repeats  
+
+---
+
+## Example Impact
+
+Before:
+High temperature zones across grid  
+
+After:
+Strategic tree placement reduces hotspots significantly  
 
 ---
 
 ## Run Locally
+
 ```bash
 python inference.py
