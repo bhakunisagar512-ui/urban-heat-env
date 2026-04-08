@@ -52,26 +52,19 @@ import requests
 
 @app.get("/demo")
 def demo():
-    base_url = "http://127.0.0.1:7860"
-
     try:
-        # Reset environment
-        reset_res = requests.post(f"{base_url}/reset").json()
-
         steps = []
 
-        for _ in range(3):
-            action = {
-                "action": {"x": 2, "y": 2}
-            }
-
-            step_res = requests.post(f"{base_url}/step", json=action).json()
-
-            steps.append(step_res)
+        # simple simulated demo (safe for HF)
+        for i in range(3):
+            steps.append({
+                "step": i + 1,
+                "action": {"x": 2, "y": 2},
+                "result": "Tree planted, temperature reduced"
+            })
 
         return {
-            "message": "Demo completed",
-            "reset": reset_res,
+            "message": "Demo simulation completed",
             "steps": steps
         }
 
