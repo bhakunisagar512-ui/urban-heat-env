@@ -48,28 +48,35 @@ app = create_app(
     max_concurrent_envs=1,  # increase this number to allow more concurrent WebSocket sessions
 )
 
+import requests
+
 @app.get("/demo")
 def demo():
-    env = UrbanHeatEnvironment()
-    observation = env.reset()
+    base_url = "http://127.0.0.1:7860"
 
-    steps = []
+    try:
+        # Reset environment
+        reset_res = requests.post(f"{base_url}/reset").json()
 
-    for _ in range(5):
-        # Create proper action object
-        action = UrbanHeatAction(x=2, y=2)
+        steps = []
 
-        observation = env.step(action)
+        for _ in range(3):
+            action = {
+                "action": {"x": 2, "y": 2}
+            }
 
-        steps.append({
-            "action": {"x": 2, "y": 2},
-            "observation": str(observation)
-        })
+            step_res = requests.post(f"{base_url}/step", json=action).json()
 
-    return {
-        "message": "Demo run completed",
-        "steps": steps
-    }
+            steps.append(step_res)
+
+        return {
+            "message": "Demo completed",
+            "reset": reset_res,
+            "steps": steps
+        }
+
+    except Exception as e:
+        return {"error": str(e)}
 
 @app.get("/")
 def home():
