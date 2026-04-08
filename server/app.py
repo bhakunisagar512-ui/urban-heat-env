@@ -56,18 +56,15 @@ def demo():
     steps = []
 
     for _ in range(5):
-        action = {"x": 2, "y": 2}
+        # Create proper action object
+        action = UrbanHeatAction(x=2, y=2)
 
-        observation, reward, done, info = env.step(action)
+        observation = env.step(action)
 
         steps.append({
-            "action": action,
-            "reward": reward,
-            "done": done
+            "action": {"x": 2, "y": 2},
+            "observation": str(observation)
         })
-
-        if done:
-            break
 
     return {
         "message": "Demo run completed",
