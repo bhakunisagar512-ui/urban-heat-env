@@ -35,12 +35,8 @@ except Exception as e:  # pragma: no cover
         "openenv is required for the web interface. Install dependencies with '\n    uv sync\n'"
     ) from e
 
-try:
-    from ..models import UrbanHeatAction, UrbanHeatObservation
-    from .urban_heat_env_environment import UrbanHeatEnvironment
-except ModuleNotFoundError:
-    from models import UrbanHeatAction, UrbanHeatObservation
-    from server.urban_heat_env_environment import UrbanHeatEnvironment
+from models import UrbanHeatAction, UrbanHeatObservation
+from server.urban_heat_env_environment import UrbanHeatEnvironment
 
 
 # Create the app with web interface and README integration
