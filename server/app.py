@@ -52,24 +52,14 @@ import requests
 
 @app.get("/demo")
 def demo():
-    try:
-        steps = []
-
-        # simple simulated demo (safe for HF)
-        for i in range(3):
-            steps.append({
-                "step": i + 1,
-                "action": {"x": 2, "y": 2},
-                "result": "Tree planted, temperature reduced"
-            })
-
-        return {
-            "message": "Demo simulation completed",
-            "steps": steps
-        }
-
-    except Exception as e:
-        return {"error": str(e)}
+    return {
+        "message": "Demo working",
+        "steps": [
+            {"step": 1, "action": {"x": 2, "y": 2}, "result": "tree placed"},
+            {"step": 2, "action": {"x": 1, "y": 3}, "result": "temperature reduced"},
+            {"step": 3, "action": {"x": 0, "y": 0}, "result": "cooling optimized"}
+        ]
+    }
 
 @app.get("/")
 def home():
