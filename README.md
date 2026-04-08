@@ -1,11 +1,10 @@
 ---
-
 title: Urban Heat Reduction Environment
 colorFrom: green
 colorTo: blue
 sdk: docker
 app_port: 7860
---------------
+---
 
 # Urban Heat Reduction Environment
 
