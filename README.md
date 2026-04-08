@@ -1,11 +1,34 @@
----
-title: Urban Heat Env
-emoji: 🌖
-colorFrom: yellow
-colorTo: indigo
-sdk: docker
-pinned: false
-license: mit
----
+# Urban Heat Reduction Environment
 
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+## Overview
+This project simulates an urban heat mitigation system where an AI agent plants trees to reduce temperature.
+
+## Motivation
+Urban heat islands are caused by dense construction and lack of greenery.
+
+## Environment Design
+
+### State
+- 5x5 temperature grid (3040C)
+- Building map (0 = empty, 1 = building)
+- Tree placements
+
+### Actions
+- Plant a tree at (x, y)
+
+### Constraints
+- Limited trees
+- Cannot plant on buildings
+- Cannot reuse same location
+
+## Reward
+- Based on temperature reduction
+- Penalizes invalid actions
+
+## Tasks
+- Easy: cool hotspots
+- Medium: reduce average temperature
+- Hard: optimize placement
+
+## Run
+python inference.py
