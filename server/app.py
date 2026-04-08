@@ -51,23 +51,22 @@ app = create_app(
 @app.get("/demo")
 def demo():
     env = UrbanHeatEnvironment()
-    state = env.reset()
+    observation = env.reset()
 
     steps = []
 
     for _ in range(5):
-        # simple strategy: place tree at center or fixed point
         action = {"x": 2, "y": 2}
 
-        obs = env.step(action)
+        observation, reward, done, info = env.step(action)
 
         steps.append({
             "action": action,
-            "reward": getattr(obs, "reward", None),
-            "done": getattr(obs, "done", False)
+            "reward": reward,
+            "done": done
         })
 
-        if getattr(obs, "done", False):
+        if done:
             break
 
     return {
